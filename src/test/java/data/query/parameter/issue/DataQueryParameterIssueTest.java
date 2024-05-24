@@ -25,6 +25,14 @@ class DataQueryParameterIssueTest {
     DataRepository repository;
 
     /**
+     * Works... But should it?
+     */
+    @Test
+    void notAnINQueryWorks() {
+        assertEquals(new DataRepository.Result("name1", "woo"), repository.findDataByExactId("1"));
+    }
+
+    /**
      * This fails with 'Expandable query parts size should be the same as parameters size + 1. 3 != 1 + 1 SELECT name, 'woo' FROM data WHERE id IN ? [SELECT name,  'woo' FROM data WHERE id IN , ]'
      */
     @Test

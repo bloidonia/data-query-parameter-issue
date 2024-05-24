@@ -14,6 +14,12 @@ import java.util.Set;
 public interface DataRepository extends CrudRepository<TestEntity, String> {
 
     @Query(
+            value = "SELECT name, '${property.value}' as property_value FROM data WHERE id = :id",
+            nativeQuery = true
+    )
+    Result findDataByExactId(String id);
+
+    @Query(
             value = "SELECT name, '${property.value}' as property_value FROM data WHERE id IN (:id)",
             nativeQuery = true
     )
